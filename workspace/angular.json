@@ -94,6 +94,98 @@
           }
         }
       }
+    },
+    "course-project": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/course-project",
+      "sourceRoot": "projects/course-project/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/course-project",
+            "index": "projects/course-project/src/index.html",
+            "main": "projects/course-project/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/course-project/tsconfig.app.json",
+            "assets": [
+              "projects/course-project/src/favicon.ico",
+              "projects/course-project/src/assets"
+            ],
+            "styles": [
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/course-project/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "course-project:build:production"
+            },
+            "development": {
+              "browserTarget": "course-project:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "course-project:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/course-project/tsconfig.spec.json",
+            "assets": [
+              "projects/course-project/src/favicon.ico",
+              "projects/course-project/src/assets"
+            ],
+            "styles": [
+              "projects/course-project/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   }
 }
