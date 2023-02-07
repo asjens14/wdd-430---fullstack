@@ -16,7 +16,7 @@ export class MessageEditComponent {
     onSendMessage(){
         const subject = this.subjectInputRef.nativeElement.value;
         const text = this.msgTextInputRef.nativeElement.value;
-        const newMessage = new Message(0,subject,text,this.currentSender);
+        const newMessage = new Message('0',subject,text,this.currentSender);
         this.addMessageEvent.emit(newMessage);
     }
 
