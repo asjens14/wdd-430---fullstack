@@ -23,9 +23,7 @@ export class ContactService {
             if (contact.id == id) {
                 return contact;
             }
-            else {
-                return null;
-            }
         }
+        return null;
     }
 }
