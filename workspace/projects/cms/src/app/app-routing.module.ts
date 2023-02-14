@@ -5,7 +5,7 @@ import { DocumentsComponent } from "./documents/documents.component";
 import { MessageListComponent } from "./messages/message-list/message-list.component";
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/documents' },
+    { path: '', redirectTo: '/documents', pathMatch: 'full' },
     { path: 'documents', component: DocumentsComponent },
     { path: 'messages', component: MessageListComponent},
     { path: 'contacts', component: ContactsComponent}
