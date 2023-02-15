@@ -1,3 +1,4 @@
+import { outputAst } from '@angular/compiler';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
@@ -7,6 +8,7 @@ import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 })
 export class DocumentService {
     @Output() documentSelectedEvent = new EventEmitter<Document>();
+    @Output() documentChangedEvent = new EventEmitter<Document[]>();
     documents: Document[] = [];
 
     constructor() {
@@ -16,12 +18,24 @@ export class DocumentService {
         return this.documents.slice();
     }
 
-    getDocument(id: string){
+    getDocument(id: string) {
         for (let document of this.documents) {
             if (document.id == id) {
                 return document;
             }
         }
         return null;
+    }
+
+    deleteDocument(document: Document) {
+        if (!document) {
+            return;
+        }
+        const pos = this.documents.indexOf(document);
+        if (pos < 0) {
+            return;
+        }
+        this.documents.splice(pos, 1);
+        this.documentChangedEvent.emit(this.documents.slice());
     }
 }
