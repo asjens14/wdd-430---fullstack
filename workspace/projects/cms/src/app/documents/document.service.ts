@@ -16,14 +16,12 @@ export class DocumentService {
         return this.documents.slice();
     }
 
-    getDocument(id: string) {
+    getDocument(id: string){
         for (let document of this.documents) {
             if (document.id == id) {
                 return document;
             }
-            else {
-                return null;
-            }
         }
+        return null;
     }
 }
