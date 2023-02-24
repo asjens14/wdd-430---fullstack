@@ -1,6 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Subject } from 'rxjs';
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 
@@ -8,8 +8,8 @@ import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
     providedIn: 'root'
 })
 export class DocumentService {
-    @Output() documentSelectedEvent = new EventEmitter<Document>();
-    @Output() documentChangedEvent = new EventEmitter<Document[]>();
+    documentSelectedEvent = new Subject<Document>();
+    // @Output() documentChangedEvent = new EventEmitter<Document[]>();
     
     documentListChangedEvent = new Subject<Document[]>();
     documents: Document[] = [];
@@ -37,12 +37,14 @@ export class DocumentService {
         if (!document) {
             return;
         }
-        const pos = this.documents.indexOf(document);
+        let pos = this.documents.indexOf(document);
         if (pos < 0) {
             return;
         }
         this.documents.splice(pos, 1);
-        this.documentChangedEvent.emit(this.documents.slice());
+        let documentsListClone = this.documents.slice();
+        this.documentListChangedEvent.next(documentsListClone)
+        // this.documentChangedEvent.emit(this.documents.slice());
     }
 
     addDocument(newDocument:Document){
