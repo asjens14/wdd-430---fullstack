@@ -1,6 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Subject } from 'rxjs';
-import { Injectable} from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 
