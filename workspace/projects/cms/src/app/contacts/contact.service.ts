@@ -45,6 +45,18 @@ export class ContactService {
         // this.contactChangedEvent.emit(this.contacts.slice());
     }
 
+    addContact(newContact:Contact){
+        if (!newContact){
+            return;
+        }
+
+        this.maxContactId++;
+        newContact.id = this.maxContactId.toString();
+        this.contacts.push(newContact);
+        let contactsListClone = this.contacts.slice();
+        this.contactListChangedEvent.next(contactsListClone);
+    }
+
         for (let contact of this.contacts) {
             let currentId = parseInt(contact.id);
             if (currentId > maxId){
