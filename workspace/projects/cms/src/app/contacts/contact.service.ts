@@ -57,6 +57,24 @@ export class ContactService {
         this.contactListChangedEvent.next(contactsListClone);
     }
 
+    updateDocument(originalContact:Contact, newContact:Contact){
+        if (!originalContact || !newContact){
+            return;
+        }
+        let pos = this.contacts.indexOf(originalContact);
+        
+        if (pos < 0){
+            return;
+        }
+
+        newContact.id = originalContact.id;
+        this.contacts[pos] = newContact;
+        let contactsListClone = this.contacts.slice();
+        this.contactListChangedEvent.next(contactsListClone)
+    }
+
+    getMaxId():number {
+        let maxId = 0;
         for (let contact of this.contacts) {
             let currentId = parseInt(contact.id);
             if (currentId > maxId){
