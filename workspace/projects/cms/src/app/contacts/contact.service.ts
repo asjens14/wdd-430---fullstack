@@ -7,11 +7,12 @@ import { MOCKCONTACTS } from './MOCKCONTACTS';
     providedIn: 'root'
 })
 export class ContactService {
-    @Output() contactSelectedEvent = new EventEmitter<Contact>();
-    @Output() contactChangedEvent = new EventEmitter<Contact[]>();
+    contactSelectedEvent = new Subject<Contact>();
+    // @Output() contactChangedEvent = new EventEmitter<Contact[]>();
     
-    contacts: Contact[] = [];
     contactListChangedEvent = new Subject<Contact[]>();
+    contacts: Contact[] = [];
+    maxContactId: number;
 
     constructor() {
         this.contacts = MOCKCONTACTS;
@@ -40,5 +41,12 @@ export class ContactService {
         }
         this.contacts.splice(pos, 1);
         this.contactChangedEvent.emit(this.contacts.slice());
+        for (let contact of this.contacts) {
+            let currentId = parseInt(contact.id);
+            if (currentId > maxId){
+                maxId = currentId;
+            }
+        }
+        return maxId;
     }
 }
