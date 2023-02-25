@@ -32,15 +32,19 @@ export class ContactService {
     }
 
     deleteContact(contact: Contact) {
-        if (!document) {
+        if (!contact) {
             return;
         }
-        const pos = this.contacts.indexOf(contact);
+        let pos = this.contacts.indexOf(contact);
         if (pos < 0) {
             return;
         }
         this.contacts.splice(pos, 1);
-        this.contactChangedEvent.emit(this.contacts.slice());
+        let contactsListClone = this.contacts.slice();
+        this.contactListChangedEvent.next(contactsListClone);
+        // this.contactChangedEvent.emit(this.contacts.slice());
+    }
+
         for (let contact of this.contacts) {
             let currentId = parseInt(contact.id);
             if (currentId > maxId){
