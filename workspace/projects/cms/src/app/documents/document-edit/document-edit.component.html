@@ -26,6 +26,7 @@
                 id="description"
                 name="description"
                 [ngModel]="document?.description"
+                #description="ngModel"
                 class="form-control"
                 size="120"
                 max="255">
@@ -41,7 +42,7 @@
                 id="url"
                 name="url"
                 [ngModel]="document?.url"
-                #name="ngModel"
+                #url="ngModel"
                 class="form-control"
                 size="150"
                 max="255">
