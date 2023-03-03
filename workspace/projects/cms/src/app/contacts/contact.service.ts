@@ -16,6 +16,7 @@ export class ContactService {
 
     constructor() {
         this.contacts = MOCKCONTACTS;
+        this.maxContactId = this.getMaxId();
     }
 
     getContacts(): Contact[] {
@@ -57,7 +58,7 @@ export class ContactService {
         this.contactListChangedEvent.next(contactsListClone);
     }
 
-    updateDocument(originalContact:Contact, newContact:Contact){
+    updateContact(originalContact:Contact, newContact:Contact){
         if (!originalContact || !newContact){
             return;
         }
