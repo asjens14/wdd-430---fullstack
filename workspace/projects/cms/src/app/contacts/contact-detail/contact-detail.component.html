@@ -17,6 +17,18 @@
                 <p class="list-group-item-text"><strong>Phone:</strong> {{ contact.phone }}</p>
             </div>
         </div>
+        <div class="panel-body" *ngIf="contact.group">
+            <div class="form-group">
+              <label for="groupList">Group Contacts:</label>
+              <div class="row" id="groupList" style="min-height: 3rem;" >
+                <div *ngFor="let contact of contact.group; let i = index">
+                  <div>
+                    <app-contact-item class="col-sm-11" [contact]="contact"></app-contact-item>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
 </div>
