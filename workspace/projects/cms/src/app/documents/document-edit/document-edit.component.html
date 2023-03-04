@@ -6,14 +6,15 @@
           <div class="col-sm-12 form-group">
             <label for="name">Document Title:</label>
             <input
-              type="text"
-              id="name"
-              name="name"
-              [ngModel]="document?.name"
-              #name="ngModel"
-              class="form-control"
-              size="120"
-              max="120">
+                required
+                type="text"
+                id="name"
+                name="name"
+                [ngModel]="document?.name"
+                #name="ngModel"
+                class="form-control"
+                size="120"
+                max="120">
           </div>
         </div>
   
@@ -21,7 +22,6 @@
           <div class="col-sm-12 form-group">
             <label for="description">Document Description:</label>
             <input
-                required
                 type="text"
                 id="description"
                 name="description"
