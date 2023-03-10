@@ -20,7 +20,7 @@
                 <app-contact-item
                     *ngFor="let contact of contacts | contactsFilter:searchBox.value"
                     [contact]="contact"
-                    (click)="onSelected(contact)"
+                    
                     dnd-draggable [dragEnabled]="true" [dragData]="contact" [dropZones]="['contactGroup']"></app-contact-item>                
             </div>
         </div>
